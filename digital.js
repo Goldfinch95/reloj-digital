@@ -1,3 +1,8 @@
+const slider = document.getElementById('slider');
+let sliderSection = document.querySelectorAll(".slider__section");
+let sliderSectionLast = sliderSection[sliderSection.length -1];
+const btnLeft = document.getElementById('btn-left');
+const btnRight = document.getElementById('btn-right');
 const pWeekDay = document.getElementById('weekDay');
 const pDay = document.getElementById('day');
 const pMonth = document.getElementById('month');
@@ -7,9 +12,32 @@ const pMinutes = document.getElementById('minutes');
 const pSeconds = document.getElementById('seconds');
 const pAMPM = document.getElementById('ampm');
 
-const week = ['Domingo', 'Lunes', 'Martes','Miércoles', 'Jueves','Viernes', 'Sábado'];
+const week = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre' , 'Octubre', 'Noviembre', 'Diciembre'];
+
+const next = ()=>{
+    let sliderSectionFirst = document.querySelectorAll(".slider__section")[0];
+    slider.style.marginLeft = '-200%';
+    slider.style.transition = 'all 0.5s';
+    setTimeout(()=>{
+        slider.style.transition = "none";
+        slider.insertAdjacentElement('beforeend', sliderSectionFirst);
+        slider.style.marginLeft = '-100%';
+    }, 500);
+}
+
+const prev = ()=>{
+    let sliderSection = document.querySelectorAll(".slider__section");
+    let sliderSectionLast = sliderSection[sliderSection.length -1];
+    slider.style.marginLeft = '0';
+    slider.style.transition = 'all 0.5s';
+    setTimeout(()=>{
+        slider.style.transition = "none";
+        slider.insertAdjacentElement('afterbegin', sliderSectionLast);
+        slider.style.marginLeft = '-100%';
+    }, 500);
+}
 
 const updateTime = ()=>{
     let time = new Date(),
@@ -53,6 +81,14 @@ const updateTime = ()=>{
 
     };
 
+
+    slider.insertAdjacentElement('afterbegin', sliderSectionLast);
+    btnRight.addEventListener('click',()=>{
+        next();
+    });
+    btnLeft.addEventListener('click', ()=>{
+        prev();
+    })
     updateTime();
     const interval = setInterval(updateTime, 1000);
 
