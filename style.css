@@ -26,12 +26,13 @@ body{
     flex-wrap: wrap;
     width: 60%;
     margin-bottom: 16%;
+    min-width: 300px;
 }
 
 .widget{
     width: 50%;
     margin: 40px;
-    
+    min-width: 500px;
     /*border: 1px #fff solid;*/
 }
 
