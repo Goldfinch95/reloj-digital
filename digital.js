@@ -16,6 +16,8 @@ const week = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', '
 
 const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre' , 'Octubre', 'Noviembre', 'Diciembre'];
 
+
+
 const next = ()=>{
     let sliderSectionFirst = document.querySelectorAll(".slider__section")[0];
     slider.style.marginLeft = '-200%';
@@ -85,6 +87,7 @@ const updateTime = ()=>{
     slider.insertAdjacentElement('afterbegin', sliderSectionLast);
     btnRight.addEventListener('click',()=>{
         next();
+
     });
     btnLeft.addEventListener('click', ()=>{
         prev();
