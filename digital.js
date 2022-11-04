@@ -92,3 +92,7 @@ const updateTime = ()=>{
     updateTime();
     const interval = setInterval(updateTime, 1000);
 
+//agregar un array con las 6 ciudades//
+//buscar la forma en que al cambiar de imagen, cambie la hora segun el pais//
+//averiguar el GTM hora local//
+//agregar un div que muestre la ciudad//
