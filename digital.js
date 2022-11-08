@@ -1,8 +1,15 @@
 const slider = document.getElementById('slider');
+const buenosAires = document.getElementById('buenosAires');
+const newYork = document.getElementById('newYork');
+const london = document.getElementById('london');
+const moscu = document.getElementById('moscu');
+const tokio = document.getElementById('tokio');
+const hongKong = document.getElementById('hongKong');
 let sliderSection = document.querySelectorAll(".slider__section");
 let sliderSectionLast = sliderSection[sliderSection.length -1];
 const btnLeft = document.getElementById('btn-left');
 const btnRight = document.getElementById('btn-right');
+const pcity = document.getElementById('city');
 const pWeekDay = document.getElementById('weekDay');
 const pDay = document.getElementById('day');
 const pMonth = document.getElementById('month');
@@ -16,6 +23,30 @@ const week = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', '
 
 const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre' , 'Octubre', 'Noviembre', 'Diciembre'];
 
+const cities =[
+    {city:'Buenos Aires',
+    img:"buenos_aires.jpg",
+    },
+    {
+        city:'New York',
+        img:"new_york.jpg",
+    },
+    {
+        city:'London',
+        img:"london.jpg",
+    },
+    {
+        city:'Moscú',
+        img:"moscu.jpg",
+    },
+    {
+        city:'Tokio',
+        img:"tokio.jpg",
+    },
+    {
+        city:'Hong Kong',
+        img:"hong_kong.jpg",
+    }];
 
 
 const next = ()=>{
@@ -27,6 +58,7 @@ const next = ()=>{
         slider.insertAdjacentElement('beforeend', sliderSectionFirst);
         slider.style.marginLeft = '-100%';
     }, 500);
+    
 }
 
 const prev = ()=>{
@@ -56,6 +88,7 @@ const updateTime = ()=>{
         pDay.textContent = day;
         pMonth.textContent = months[month];
         pYear.textContent = year;
+        pcity.textContent = cities[0].city;
 
         if(hours >= 12){
             hours = hours - 12;
@@ -80,22 +113,76 @@ const updateTime = ()=>{
 
         pMinutes.textContent = minutes;
         pSeconds.textContent = seconds;
-
     };
 
-
     slider.insertAdjacentElement('afterbegin', sliderSectionLast);
+
     btnRight.addEventListener('click',()=>{
         next();
+        updateTime();
 
-    });
+        let time = new Date(),
+        hours = time.getHours();
+
+        if(sliderSection[0]){
+        pcity.textContent = cities[0].city;
+        pHours.textContent = hours;
+        };
+        if(sliderSection[1]){
+        pcity.textContent = cities[1].city;
+        pHours.textContent = hours + 2;
+        }
+        if(sliderSection[2]){
+            pcity.textContent = cities[2].city;
+            pHours.textContent = hours + 3;
+        }
+        if(sliderSection[3]){
+                pcity.textContent = cities[3].city;
+                pHours.textContent = hours + 6;
+        }
+        if(sliderSection[4]){
+                    pcity.textContent = cities[4].city;
+                    pHours.textContent = hours + 12;
+        }
+        if(sliderSection[5]){
+            pcity.textContent = cities[5].city;
+            pHours.textContent = hours + 11;
+}
+});
     btnLeft.addEventListener('click', ()=>{
         prev();
+        updateTime();
+        let time = new Date(),
+        hours = time.getHours();
+
+        if(sliderSection[0]){
+        pcity.textContent = cities[0].city;
+        pHours.textContent = hours;
+        };
+        if(sliderSection[1]){
+        pcity.textContent = cities[1].city;
+        pHours.textContent = hours + 2;
+        }
+        if(sliderSection[2]){
+            pcity.textContent = cities[2].city;
+            pHours.textContent = hours + 3;
+        }
+        if(sliderSection[3]){
+                pcity.textContent = cities[3].city;
+                pHours.textContent = hours + 6;
+        }
+        if(sliderSection[4]){
+                    pcity.textContent = cities[4].city;
+                    pHours.textContent = hours + 12;
+        }
+        if(sliderSection[5]){
+            pcity.textContent = cities[5].city;
+            pHours.textContent = hours + 11;
+}
     })
     updateTime();
     const interval = setInterval(updateTime, 1000);
 
-//agregar un array con las 6 ciudades//
+
 //buscar la forma en que al cambiar de imagen, cambie la hora segun el pais//
 //averiguar el GTM hora local//
-//agregar un div que muestre la ciudad//
