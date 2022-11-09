@@ -22,7 +22,7 @@ const week = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', '
 
 const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre' , 'Octubre', 'Noviembre', 'Diciembre'];
 
-const cities = ['Buenos Aires', 'New York', 'London', 'Moscu', 'Tokio', 'Hong Kong'];
+const cities = ['Buenos Aires', 'New York', 'London', 'Moscú', 'Tokio', 'Hong Kong'];
 
 slides.forEach((slide, indx) => {
     slide.style.transform = `translateX(${indx * 100}%)`;
