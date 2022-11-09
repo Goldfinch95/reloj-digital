@@ -1,14 +1,12 @@
-const slider = document.getElementById('slider');
+const slides = document.querySelectorAll('.slide');
+const nextSlide = document.getElementById('btnNext');
+const prevSlide = document.getElementById('btnPrev');
 const buenosAires = document.getElementById('buenosAires');
 const newYork = document.getElementById('newYork');
 const london = document.getElementById('london');
 const moscu = document.getElementById('moscu');
 const tokio = document.getElementById('tokio');
 const hongKong = document.getElementById('hongKong');
-let sliderSection = document.querySelectorAll(".slider__section");
-let sliderSectionLast = sliderSection[sliderSection.length -1];
-const btnLeft = document.getElementById('btn-left');
-const btnRight = document.getElementById('btn-right');
 const pcity = document.getElementById('city');
 const pWeekDay = document.getElementById('weekDay');
 const pDay = document.getElementById('day');
@@ -19,59 +17,21 @@ const pMinutes = document.getElementById('minutes');
 const pSeconds = document.getElementById('seconds');
 const pAMPM = document.getElementById('ampm');
 
+
 const week = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre' , 'Octubre', 'Noviembre', 'Diciembre'];
 
-const cities =[
-    {city:'Buenos Aires',
-    img:"buenos_aires.jpg",
-    },
-    {
-        city:'New York',
-        img:"new_york.jpg",
-    },
-    {
-        city:'London',
-        img:"london.jpg",
-    },
-    {
-        city:'Moscú',
-        img:"moscu.jpg",
-    },
-    {
-        city:'Tokio',
-        img:"tokio.jpg",
-    },
-    {
-        city:'Hong Kong',
-        img:"hong_kong.jpg",
-    }];
+const cities = ['Buenos Aires', 'New York', 'London', 'Moscu', 'Tokio', 'Hong Kong'];
+
+slides.forEach((slide, indx) => {
+    slide.style.transform = `translateX(${indx * 100}%)`;
+  });
+
+let firstCity = 0;
+let lastCity = slides.length -1;
 
 
-const next = ()=>{
-    let sliderSectionFirst = document.querySelectorAll(".slider__section")[0];
-    slider.style.marginLeft = '-200%';
-    slider.style.transition = 'all 0.5s';
-    setTimeout(()=>{
-        slider.style.transition = "none";
-        slider.insertAdjacentElement('beforeend', sliderSectionFirst);
-        slider.style.marginLeft = '-100%';
-    }, 500);
-    
-}
-
-const prev = ()=>{
-    let sliderSection = document.querySelectorAll(".slider__section");
-    let sliderSectionLast = sliderSection[sliderSection.length -1];
-    slider.style.marginLeft = '0';
-    slider.style.transition = 'all 0.5s';
-    setTimeout(()=>{
-        slider.style.transition = "none";
-        slider.insertAdjacentElement('afterbegin', sliderSectionLast);
-        slider.style.marginLeft = '-100%';
-    }, 500);
-}
 
 const updateTime = ()=>{
     let time = new Date(),
@@ -88,20 +48,7 @@ const updateTime = ()=>{
         pDay.textContent = day;
         pMonth.textContent = months[month];
         pYear.textContent = year;
-        pcity.textContent = cities[0].city;
 
-        if(hours >= 12){
-            hours = hours - 12;
-            ampm = 'PM';
-        }
-        else{
-            ampm = 'AM';
-        }
-        if(hours == 0){
-            hours = 12;
-        };
-
-        pHours.textContent = hours;
         pAMPM.textContent = ampm;
 
         if(minutes < 10){
@@ -113,76 +60,60 @@ const updateTime = ()=>{
 
         pMinutes.textContent = minutes;
         pSeconds.textContent = seconds;
-    };
 
-    slider.insertAdjacentElement('afterbegin', sliderSectionLast);
-
-    btnRight.addEventListener('click',()=>{
-        next();
-        updateTime();
-
-        let time = new Date(),
-        hours = time.getHours();
-
-        if(sliderSection[0]){
-        pcity.textContent = cities[0].city;
-        pHours.textContent = hours;
+        if(firstCity == 0){
+            pcity.textContent = cities[0];
+            pHours.textContent = hours;
+            
         };
-        if(sliderSection[1]){
-        pcity.textContent = cities[1].city;
-        pHours.textContent = hours + 2;
+        if(firstCity == 1){
+            pcity.textContent = cities[1];
+            pHours.textContent = hours + 2;
         }
-        if(sliderSection[2]){
-            pcity.textContent = cities[2].city;
+        if(firstCity == 2){
+            pcity.textContent = cities[2];
             pHours.textContent = hours + 3;
         }
-        if(sliderSection[3]){
-                pcity.textContent = cities[3].city;
-                pHours.textContent = hours + 6;
+        if(firstCity == 3){
+            pcity.textContent = cities[3];
+            pHours.textContent = hours + 6;
         }
-        if(sliderSection[4]){
-                    pcity.textContent = cities[4].city;
-                    pHours.textContent = hours + 12;
+        if(firstCity == 4){
+            pcity.textContent = cities[4];
+            pHours.textContent = hours + 12;
         }
-        if(sliderSection[5]){
-            pcity.textContent = cities[5].city;
+        if(firstCity == 5){
+            pcity.textContent = cities[5];
             pHours.textContent = hours + 11;
-}
-});
-    btnLeft.addEventListener('click', ()=>{
-        prev();
-        updateTime();
-        let time = new Date(),
-        hours = time.getHours();
+    }
+};
 
-        if(sliderSection[0]){
-        pcity.textContent = cities[0].city;
-        pHours.textContent = hours;
-        };
-        if(sliderSection[1]){
-        pcity.textContent = cities[1].city;
-        pHours.textContent = hours + 2;
+    nextSlide.addEventListener('click',()=>{
+        if(firstCity === lastCity){
+            firstCity = 0;
+        }else{
+            firstCity++;
         }
-        if(sliderSection[2]){
-            pcity.textContent = cities[2].city;
-            pHours.textContent = hours + 3;
+        slides.forEach((slide,indx)=>{
+            slide.style.transform = `translateX(${100 * (indx - firstCity)}%)`;
+        });
+    });
+
+    prevSlide.addEventListener('click', ()=>{
+        if(firstCity === 0){
+            firstCity = lastCity;
+        }else{
+            firstCity--;
         }
-        if(sliderSection[3]){
-                pcity.textContent = cities[3].city;
-                pHours.textContent = hours + 6;
-        }
-        if(sliderSection[4]){
-                    pcity.textContent = cities[4].city;
-                    pHours.textContent = hours + 12;
-        }
-        if(sliderSection[5]){
-            pcity.textContent = cities[5].city;
-            pHours.textContent = hours + 11;
-}
+        slides.forEach((slide,indx)=>{
+            slide.style.transform = `translateX(${100 * (indx - firstCity)}%)`;
+        });
     })
     updateTime();
     const interval = setInterval(updateTime, 1000);
 
 
-//buscar la forma en que al cambiar de imagen, cambie la hora segun el pais//
-//averiguar el GTM hora local//
+//ubicar la posicion de las imagenes
+
+//prueba en el slider meter un ciclo for
+
