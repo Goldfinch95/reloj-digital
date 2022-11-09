@@ -51,6 +51,17 @@ const updateTime = ()=>{
 
         pAMPM.textContent = ampm;
 
+        if(hours >= 12){
+            hours = hours - 12;
+            ampm = 'PM';
+        }
+        else{
+            ampm = 'AM';
+        }
+        if(hours == 0){
+            hours = 12;
+        };
+
         if(minutes < 10){
             minutes = '0' + minutes
         };
@@ -64,27 +75,126 @@ const updateTime = ()=>{
         if(firstCity == 0){
             pcity.textContent = cities[0];
             pHours.textContent = hours;
+            pAMPM.textContent = ampm;
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if(pHours.textContent >= 12){
+                pHours.textContent = pHours.textContent - 12;
+                pAMPM.textContent = 'AM';
+            }
+            else{
+                pAMPM.textContent = 'PM';
+            }
+            if(pHours.textContent == 0){
+                pHours.textContent = 12;
+            };
             
         };
         if(firstCity == 1){
             pcity.textContent = cities[1];
             pHours.textContent = hours + 2;
+            pAMPM.textContent = ampm;
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if(pHours.textContent >= 12){
+                pHours.textContent = pHours.textContent - 12;
+                pAMPM.textContent = 'AM';
+            }
+            else{
+                pAMPM.textContent = 'PM';
+            }
+            if(pHours.textContent == 0){
+                pHours.textContent = 12;
+            };
         }
         if(firstCity == 2){
             pcity.textContent = cities[2];
             pHours.textContent = hours + 3;
+            pAMPM.textContent = ampm;
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if(pHours.textContent >= 12){
+                pHours.textContent = pHours.textContent - 12;
+                pAMPM.textContent = 'AM';
+            }
+            else{
+                pAMPM.textContent = 'PM';
+            }
+            if(pHours.textContent == 0){
+                pHours.textContent = 12;
+            };
         }
         if(firstCity == 3){
             pcity.textContent = cities[3];
             pHours.textContent = hours + 6;
+            pAMPM.textContent = ampm;
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if(pHours.textContent >= 12){
+                pHours.textContent = pHours.textContent - 12;
+                pAMPM.textContent = 'AM';
+            }
+            else{
+                pAMPM.textContent = 'PM';
+            }
+            if(pHours.textContent == 0){
+                pHours.textContent = 12;
+            };
         }
         if(firstCity == 4){
             pcity.textContent = cities[4];
             pHours.textContent = hours + 12;
+            pAMPM.textContent = ampm;
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if(pHours.textContent >= 12){
+                pHours.textContent = pHours.textContent - 12;
+                pAMPM.textContent = 'AM';
+            }
+            else{
+                pAMPM.textContent = 'PM';
+            }
+            if(pHours.textContent == 0){
+                pHours.textContent = 12;
+            };
         }
         if(firstCity == 5){
             pcity.textContent = cities[5];
             pHours.textContent = hours + 11;
+            pAMPM.textContent = ampm;
+            if( pHours.textContent >= 12){
+                pDay.textContent = day + 1;
+            }
+            if(pHours.textContent >= 12){
+                pHours.textContent = pHours.textContent - 12;
+                pAMPM.textContent = 'AM';
+            }
+            else{
+                pAMPM.textContent = 'PM';
+            }
+            if(pHours.textContent == 0){
+                pHours.textContent = 12;
+            };
     }
 };
 
