@@ -3,7 +3,6 @@
   padding: 0%;
   box-sizing: border-box;
 }
-
 body{
   width: 100%;
   height: 100vh;
@@ -16,14 +15,13 @@ body{
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  color: #fff;   
+  color: #fff;
 }
-
 .slider {
   position: relative;
   display: flex;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 30px;
   max-width: 800px;
   margin-left: 12px;
   margin-right: 12px;
@@ -35,9 +33,28 @@ body{
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
 }
-
-
-
+.slider:before{
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #fff;
+  z-index: -1;
+}
+.slider::after{
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #fff;
+  z-index: -2;
+  filter: blur(40px);
+  -webkit-filter: blur(40px);
+}
 .slide {
   width: 100%;
   max-width: 800px;
@@ -45,13 +62,11 @@ body{
   position: absolute;
   transition: all 0.5s;
 }
-
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .btn {
   position: absolute;
   width: 40px;
@@ -61,6 +76,7 @@ body{
   border-radius: 50%;
   z-index: 10px;
   cursor: pointer;
+  background-color: #fff;
   font-size: 18px;
 }
 
@@ -80,36 +96,30 @@ body{
   top: 45%;
   right: 2%;
 }
-
 .btn:active {
   transform: scale(1.1);
 }
-
-
 .wrap{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 50%;
-  height: 40%;
+  width: 60%;
   margin-bottom: 16%;
 }
-
 .widget{
   width: 50%;
-  margin: 15px;
+  margin: 40px;
   min-width: 350px;
+  margin-bottom: 100px;
   /*border: 1px #fff solid;*/
 }
-
 .widget p{
   display: inline-block;
-  line-height: 12px;
+  line-height: 16px;
 }
-
 .date{
   width: 100%;
-  padding: 12px;
+  padding: 20px;
   font-family: 'Roboto', sans-serif;
   text-align: center;
   font-size: 24px;
@@ -120,20 +130,18 @@ body{
   backdrop-filter: blur(4.2px);
   -webkit-backdrop-filter: blur(4.2px);
 }
-
 .clock{
   width: 100%;
-  padding: 12px;
+  padding: 20px;
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  font-size: 42px;
+  font-size: 46px;
   background: rgba(0, 0, 0, .5);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.2px);
   -webkit-backdrop-filter: blur(4.2px);
 }
-
 .clock .seconds-box{
   display: inline-block;
 }
