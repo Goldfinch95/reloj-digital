@@ -11,26 +11,11 @@
 </head>
 <body>
     <div class="slider">
-        <div id="buenosAires" class="slide">
-            <img src="./images/buenos_aires.jpg" alt="">
-        </div>
-        <div id="newYork" class="slide">
-            <img src="./images/new_york.jpg" alt="">
-        </div>
-        <div id="london" class="slide">
-            <img src="./images/london.jpg" alt="">
-        </div>
-        <div id="moscu" class="slide">
-            <img src="./images/moscu.jpg" alt="">
-        </div>
-        <div id="tokio" class="slide">
-            <img src="./images/tokio.jpg" alt="">
-        </div>
-        <div id="hongKong" class="slide">
-            <img src="./images/hong_kong.jpg" alt="">
-        </div>
-        <button id="btnNext"class="btn btn-next"><i class="bi bi-arrow-right-circle-fill"></i></button>
+        <div class="slide">
+        <img id="city_img" src="./images/buenos_aires.jpg" alt="">
         <button id="btnPrev"class="btn btn-prev"><i class="bi bi-arrow-left-circle-fill"></i></button>
+        <button id="btnNext"class="btn btn-next"><i class="bi bi-arrow-right-circle-fill"></i></button>
+    </div>
     </div>
     <div class="wrap">
         <div class="widget">
@@ -38,9 +23,11 @@
                 <p id="city" class="weekDay"></p>
             </div>
             <div class="date">
-                <p id="weekDay" class="weekDay"></p>
-                <p id="day"></p>
-                <p>del</p>
+                <p id="day" class="weekDay"></p>
+            </div>
+            <div class="date">
+                <p id="number"></p>
+                <p>de</p>
                 <p id="month" class="month"></p>
                 <p>del</p>
                 <p id="year" class="year"></p>

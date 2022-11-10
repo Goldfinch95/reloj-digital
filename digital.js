@@ -1,229 +1,124 @@
-const slides = document.querySelectorAll('.slide');
-const nextSlide = document.getElementById('btnNext');
-const prevSlide = document.getElementById('btnPrev');
-const buenosAires = document.getElementById('buenosAires');
-const newYork = document.getElementById('newYork');
-const london = document.getElementById('london');
-const moscu = document.getElementById('moscu');
-const tokio = document.getElementById('tokio');
-const hongKong = document.getElementById('hongKong');
-const pcity = document.getElementById('city');
-const pWeekDay = document.getElementById('weekDay');
-const pDay = document.getElementById('day');
-const pMonth = document.getElementById('month');
-const pYear = document.getElementById('year');
-const pHours = document.getElementById('hours');
-const pMinutes = document.getElementById('minutes');
-const pSeconds = document.getElementById('seconds');
-const pAMPM = document.getElementById('ampm');
+const cityImg = document.getElementById('city_img');
+const nextImg = document.getElementById('btnNext');
+const prevImg = document.getElementById('btnPrev');
+const cityName = document.getElementById('city');
+const currentDay = document.getElementById('day');
+const numberDay = document.getElementById('number');
+const monthYear = document.getElementById('month');
+const years = document.getElementById('year');
+const currentHours = document.getElementById('hours');
+const currentMinutes = document.getElementById('minutes');
+const currentSeconds = document.getElementById('seconds');
+const currentAmpm = document.getElementById('ampm');
 
+
+const cities = [
+{name:'Buenos Aires',
+ img:"./images/buenos_aires.jpg",
+ hour: 0},
+{name:'New York',
+ img:"./images/new_york.jpg",
+ hour: 2},
+{name:'London',
+ img:"./images/london.jpg",
+ hour: 3},
+{name:'Moscú',
+ img:"./images/moscu.jpg",
+ hour: 6},
+{name:'Tokio',
+ img:"./images/tokio.jpg",
+ hour: 12},
+{name:'Hong Kong',
+ img:"./images/hong_kong.jpg",
+ hour: 11}]
 
 const week = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre' , 'Octubre', 'Noviembre', 'Diciembre'];
 
-const cities = ['Buenos Aires', 'New York', 'London', 'Moscú', 'Tokio', 'Hong Kong'];
+const firstCityImg = 0;
 
-slides.forEach((slide, indx) => {
-    slide.style.transform = `translateX(${indx * 100}%)`;
-  });
+const lastCityImg = cities.length -1;
 
-let firstCity = 0;
-let lastCity = slides.length -1;
+let currentCityImg = 0;
 
+cityName.innerHTML = cities[currentCityImg].name;
+
+
+const cityUpdate = ()=>{
+    if(currentCityImg){ 
+        currentHours.innerHTML = cities[currentCityImg].hour + hours;
+        if(currentHours.innerHTML > 12){
+            currentHours.innerHTML = cities[currentCityImg].hour + hours - 12;
+            currentAmpm.innerHTML = 'AM';
+            numberDay.innerHTML = day + 1;
+            currentDay.innerHTML = week[weekDay + 1];
+        }
+    }
+}
 
 
 const updateTime = ()=>{
-    let time = new Date(),
-        weekDay = time.getDay(),
-        day = time.getDate(),
-        month = time.getMonth(),
-        year = time.getFullYear(),
-        hours = time.getHours(),
-        minutes = time.getMinutes(),
-        seconds = time.getSeconds(),
-        ampm;
-        
-        pWeekDay.textContent = week[weekDay];
-        pDay.textContent = day;
-        pMonth.textContent = months[month];
-        pYear.textContent = year;
+    let time = new Date();
+    weekDay = time.getDay();
+    day = time.getDate();
+    month = time.getMonth();
+    year = time.getFullYear();
+    hours = time.getHours();
+    minutes = time.getMinutes();
+    seconds = time.getSeconds();
 
-        pAMPM.textContent = ampm;
+    let ampm;
 
-        if(hours >= 12){
-            hours = hours - 12;
-            ampm = 'PM';
-        }
-        else{
-            ampm = 'AM';
-        }
-        if(hours == 0){
-            hours = 12;
-        };
-
-        if(minutes < 10){
-            minutes = '0' + minutes
-        };
-        if(seconds < 10){
-            seconds = '0' + seconds
-        };
-
-        pMinutes.textContent = minutes;
-        pSeconds.textContent = seconds;
-
-        if(firstCity == 0){
-            pcity.textContent = cities[0];
-            pHours.textContent = hours;
-            pAMPM.textContent = ampm;
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if(pHours.textContent >= 12){
-                pHours.textContent = pHours.textContent - 12;
-                pAMPM.textContent = 'AM';
-            }
-            else{
-                pAMPM.textContent = 'PM';
-            }
-            if(pHours.textContent == 0){
-                pHours.textContent = 12;
-            };
-            
-        };
-        if(firstCity == 1){
-            pcity.textContent = cities[1];
-            pHours.textContent = hours + 2;
-            pAMPM.textContent = ampm;
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if(pHours.textContent >= 12){
-                pHours.textContent = pHours.textContent - 12;
-                pAMPM.textContent = 'AM';
-            }
-            else{
-                pAMPM.textContent = 'PM';
-            }
-            if(pHours.textContent == 0){
-                pHours.textContent = 12;
-            };
-        }
-        if(firstCity == 2){
-            pcity.textContent = cities[2];
-            pHours.textContent = hours + 3;
-            pAMPM.textContent = ampm;
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if(pHours.textContent >= 12){
-                pHours.textContent = pHours.textContent - 12;
-                pAMPM.textContent = 'AM';
-            }
-            else{
-                pAMPM.textContent = 'PM';
-            }
-            if(pHours.textContent == 0){
-                pHours.textContent = 12;
-            };
-        }
-        if(firstCity == 3){
-            pcity.textContent = cities[3];
-            pHours.textContent = hours + 6;
-            pAMPM.textContent = ampm;
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if(pHours.textContent >= 12){
-                pHours.textContent = pHours.textContent - 12;
-                pAMPM.textContent = 'AM';
-            }
-            else{
-                pAMPM.textContent = 'PM';
-            }
-            if(pHours.textContent == 0){
-                pHours.textContent = 12;
-            };
-        }
-        if(firstCity == 4){
-            pcity.textContent = cities[4];
-            pHours.textContent = hours + 12;
-            pAMPM.textContent = ampm;
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if(pHours.textContent >= 12){
-                pHours.textContent = pHours.textContent - 12;
-                pAMPM.textContent = 'AM';
-            }
-            else{
-                pAMPM.textContent = 'PM';
-            }
-            if(pHours.textContent == 0){
-                pHours.textContent = 12;
-            };
-        }
-        if(firstCity == 5){
-            pcity.textContent = cities[5];
-            pHours.textContent = hours + 11;
-            pAMPM.textContent = ampm;
-            if( pHours.textContent >= 12){
-                pDay.textContent = day + 1;
-            }
-            if(pHours.textContent >= 12){
-                pHours.textContent = pHours.textContent - 12;
-                pAMPM.textContent = 'AM';
-            }
-            else{
-                pAMPM.textContent = 'PM';
-            }
-            if(pHours.textContent == 0){
-                pHours.textContent = 12;
-            };
+    if(hours > 12){
+        hours = hours - 12;
+        ampm = 'PM'
     }
-};
+    else{
+        hours = hours;
+        ampm = 'AM';
+    }
 
-    nextSlide.addEventListener('click',()=>{
-        if(firstCity === lastCity){
-            firstCity = 0;
-        }else{
-            firstCity++;
-        }
-        slides.forEach((slide,indx)=>{
-            slide.style.transform = `translateX(${100 * (indx - firstCity)}%)`;
-        });
-    });
+    if(minutes < 10){
+        minutes = '0' + minutes;
+    };
 
-    prevSlide.addEventListener('click', ()=>{
-        if(firstCity === 0){
-            firstCity = lastCity;
-        }else{
-            firstCity--;
-        }
-        slides.forEach((slide,indx)=>{
-            slide.style.transform = `translateX(${100 * (indx - firstCity)}%)`;
-        });
-    })
+    if(seconds < 10){
+        seconds = '0' + seconds;
+    }
+
+    currentDay.innerHTML = week[weekDay];
+    numberDay.innerHTML = day;
+    monthYear.innerHTML = months[month];
+    years.innerHTML = year;
+    currentHours.innerHTML = hours;
+    currentMinutes.innerHTML = minutes;
+    currentSeconds.innerHTML = seconds;
+    currentAmpm.innerHTML = ampm;
+
+    cityUpdate();
+}
+
+
+
+nextImg.addEventListener('click', ()=>{
     updateTime();
-    const interval = setInterval(updateTime, 1000);
+    currentCityImg++;
+    if(currentCityImg > lastCityImg){
+        currentCityImg = firstCityImg;
+    }
+    cityImg.src = cities[currentCityImg].img;
+    cityName.innerHTML = cities[currentCityImg].name;
+})
 
+prevImg.addEventListener('click',()=>{
+    currentCityImg--;
+    if(currentCityImg < firstCityImg){
+        currentCityImg = lastCityImg;
+    }
+    cityImg.src = cities[currentCityImg].img;
+    cityName.innerHTML = cities[currentCityImg].name;
+})
 
-//ubicar la posicion de las imagenes
-
-//prueba en el slider meter un ciclo for
-
+updateTime();
+const interval = setInterval(updateTime, 1000);
